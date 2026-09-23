@@ -2,8 +2,15 @@ services:
   taskready:
     build: .
     ports:
-      - "8000:8000"
-    env_file:
-      - .env
+      - "127.0.0.1:8000:8000"
+    environment:
+      APP_ENV: ${APP_ENV:-development}
+      TASKREADY_AI_PROVIDER: ${TASKREADY_AI_PROVIDER:-openai}
+      TASKREADY_AI_MODEL: ${TASKREADY_AI_MODEL:-gpt-4.1-mini}
+      TASKREADY_AI_API_KEY: ${TASKREADY_AI_API_KEY:-}
+      TASKREADY_PUBLIC_ORIGIN: ${TASKREADY_PUBLIC_ORIGIN:-}
     volumes:
-      - ./data:/app/data
+      - taskready-data:/app/data
+    restart: unless-stopped
+volumes:
+  taskready-data:

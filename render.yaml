@@ -1,0 +1,27 @@
+# Prepared configuration. Not deployed from this environment.
+# A persistent disk and starter instance are billable on Render.
+services:
+  - type: web
+    name: taskready-ai
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r backend/requirements.txt && python scripts/build_demo.py
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT --workers 1
+    healthCheckPath: /api/health
+    disk:
+      name: taskready-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: APP_ENV
+        value: production
+      - key: TASKREADY_DB_PATH
+        value: /var/data/taskready-v3.sqlite3
+      - key: TASKREADY_AI_PROVIDER
+        value: openai
+      - key: TASKREADY_AI_MODEL
+        value: gpt-4.1-mini
+      - key: TASKREADY_AI_API_KEY
+        sync: false
