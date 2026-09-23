@@ -289,11 +289,9 @@ body{background:radial-gradient(ellipse at 3% 1%,rgba(255,23,68,.075),transparen
 </style>
 </head>
 <body>
-
   <div id="app" class="app-shell"></div>
   <div id="toast-root" class="toast-root" aria-live="polite"></div>
   <div id="modal-root"></div>
-
   <script>window.TASKREADY_DEMO=true;
 const DEMO=Boolean(window.TASKREADY_DEMO)||location.protocol==='file:';
 let authUser=null,csrfToken='',aiConfigured=false,working=false;
@@ -333,16 +331,21 @@ const initialState = {
     { id: 't2', title: 'Понятный навигатор по городским кружкам', industry: 'Образование', context: 'Родители тратят много времени на поиск подходящих занятий для детей.', data: 'Список кружков, возрастные группы, расписания и цены.', expected: 'Каталог с фильтрами и подбором по интересам ребёнка.', success: 'Пользователь находит 3 подходящих кружка менее чем за 2 минуты.', constraints: 'Только веб-прототип; данные синтетические.', users: 'Родители детей 7–16 лет.', business: 'Проверка прототипа с 5 родителями раз в неделю.', contact: 'Данияр, городской центр', interaction: 'Онлайн-встречи', score: 84, level: 'Готовая', status: 'published', created: 'Вчера', tags: ['рекомендации', 'город'], owner: 'business', confirmed: true },
     { id: 't3', title: 'Прозрачный сбор обратной связи студентов', industry: 'Образование', context: 'Обратная связь приходит в разных формах и теряется.', data: '', expected: 'Единая форма для сбора и просмотра обратной связи.', success: '', constraints: 'Нужно показать результат к концу месяца.', users: 'Студенты и преподаватели.', business: 'Контакт с куратором проекта.', contact: 'Куратор образовательных программ', interaction: 'Чат и еженедельный созвон', score: 48, level: 'Рабочая', status: 'published', created: '2 дня назад', tags: ['feedback'], owner: 'business', confirmed: true },
     { id: 't4', title: 'Помощник для первичной классификации обращений', industry: 'Госуслуги', context: 'Операторы тратят время на распределение обращений по категориям.', data: 'История обращений пока не структурирована.', expected: 'Демонстрационный классификатор с объяснением решения.', success: 'Не определены.', constraints: '', users: 'Операторы контакт-центра.', business: '', contact: '', interaction: 'Гибридно', score: 28, level: 'Черновик', status: 'published', created: '3 дня назад', tags: ['AI', 'классификация'], owner: 'business', confirmed: true },
+    { id: 't5', title: 'Форма записи в городские кружки', industry: 'Образование', context: 'Родители заполняют разные формы для каждого кружка и теряют часть заявок.', data: 'Есть таблица с 60 кружками, расписанием, ценами и возрастными группами.', expected: 'Веб-прототип каталога кружков с фильтрами и единой формой записи.', success: 'Не менее 90% тестовых заявок попадают в таблицу без ошибок.', constraints: 'Только веб-прототип за 3 недели, данные синтетические.', users: 'Родители детей 7–14 лет и координаторы кружков.', business: 'Координатор доступен для еженедельной проверки по четвергам.', contact: 'Координатор городских программ', interaction: 'Онлайн-встречи', score: 92, level: 'Приоритетная', status: 'published', created: 'Сегодня', tags: ['образование', 'запись'], owner: 'business', confirmed: true },
   ],
   teams: [
     { id: 'team1', name: 'Data Nomads', initials: 'DN', skills: ['Python', 'аналитика', 'автоматизация'], interests: ['сервисы', 'данные'], tech: 'FastAPI · React · PostgreSQL', points: 120 },
     { id: 'team2', name: 'Qadam Studio', initials: 'QS', skills: ['UX', 'прототипирование', 'исследования'], interests: ['образование', 'город'], tech: 'Figma · React · UX research', points: 95 },
     { id: 'team3', name: 'Orda AI', initials: 'OA', skills: ['NLP', 'ML', 'Python'], interests: ['AI', 'классификация'], tech: 'Python · transformers · FastAPI', points: 80 },
+    { id: 'team4', name: 'Pixel Hikers', initials: 'PH', skills: ['UX', 'React', 'прототипирование'], interests: ['образование', 'город'], tech: 'React · TypeScript · Figma', points: 65 },
+    { id: 'team5', name: 'Steppe Signals', initials: 'SS', skills: ['Python', 'аналитика', 'NLP'], interests: ['сервисы', 'данные'], tech: 'Python · FastAPI · PostgreSQL', points: 50 },
   ],
   offers: [
     { id: 'o1', taskId: 't1', teamId: 'team1', idea: 'Сделаем inbox-пайплайн: импорт CSV/почты, нормализация полей и очередь исключений.', plan: '1) схема данных 2) импорт 3) дашборд 4) тест на 20 примерах', deadline: '10 дней', prototype: 'https://github.com/demo/inbox-flow', status: 'pending', created: 'сегодня' },
     { id: 'o2', taskId: 't1', teamId: 'team2', idea: 'Сфокусируемся на простом интерфейсе оператора и быстрых горячих действиях.', plan: 'Интервью → карта пути → кликабельный прототип → тестирование', deadline: '7 дней', prototype: 'https://figma.com/demo/operator', status: 'pending', created: 'сегодня' },
     { id: 'o3', taskId: 't2', teamId: 'team2', idea: 'Создадим подбор по возрасту, интересам и доступному времени.', plan: 'Сегменты → фильтры → карточка кружка → тест с родителями', deadline: '8 дней', prototype: 'https://figma.com/demo/clubs', status: 'accepted', created: 'вчера' },
+    { id: 'o4', taskId: 't3', teamId: 'team3', idea: 'Соберём единый экран обратной связи с группировкой по темам и поиском повторяющихся проблем.', plan: 'Сначала разметим примеры, затем сделаем форму и обзор категорий, проверим на тестовой выборке.', deadline: '14 дней', prototype: 'https://example.com/prototypes/student-feedback', status: 'pending', created: 'вчера' },
+    { id: 'o5', taskId: 't5', teamId: 'team4', idea: 'Создадим удобный каталог кружков с фильтрами по возрасту, району и расписанию.', plan: 'Согласуем поля, соберём кликабельный прототип, проверим форму записи с родителями.', deadline: '3 недели', prototype: 'https://example.com/prototypes/club-signup', status: 'pending', created: 'сегодня' },
   ],
 };
 
@@ -472,7 +475,15 @@ function currentIdentity(){return DEMO?{id:state.role==='team'?'team1':'business
 function loadState(){
  const empty={...structuredClone(initialState),tasks:[],teams:[],offers:[],editingId:null};
  if(!DEMO)return empty;
- try{return {...structuredClone(initialState),...JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}}catch{return structuredClone(initialState)}
+ try{
+  const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+  const loaded={...structuredClone(initialState),...saved};
+  for(const key of ['tasks','teams','offers']){
+   const rows=Array.isArray(saved[key])?saved[key]:[];const ids=new Set(rows.map(row=>row.id));
+   loaded[key]=[...rows,...initialState[key].filter(seed=>!ids.has(seed.id)).map(seed=>structuredClone(seed))];
+  }
+  return loaded;
+ }catch{return structuredClone(initialState)}
 }
 function saveState(){
  try{if(DEMO)localStorage.setItem(STORAGE_KEY,JSON.stringify(state));else if(authUser)localStorage.setItem('taskready-draft-'+authUser.id,JSON.stringify({draft:state.draft,draftStep:state.draftStep,editingId:state.editingId}));}catch{toast('Браузер не смог сохранить черновик. Не закрывайте вкладку.');}
@@ -553,7 +564,7 @@ function safeLink(v){try{const u=new URL(v);return ['https:','http:'].includes(u
 function openTask(id){
  const t=state.tasks.find(t=>t.id===id);if(!t)return;
  const mine=state.role==='business'&&t.owner===currentIdentity().id;const existing=state.offers.find(o=>o.taskId===id&&o.teamId===currentIdentity().id);
- document.getElementById('modal-root').innerHTML=`<div class="modal-backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="task-modal-title"><div class="modal-head"><div><span class="badge green">${t.score}/100 · ${escapeHtml(t.level)}</span><h2 id="task-modal-title">${escapeHtml(t.title)}</h2><p>${escapeHtml(t.industry)}</p></div><button class="close" data-close aria-label="Закрыть">×</button></div><div class="detail-grid">${Object.keys(fieldLabels).map(k=>`<div class="detail-item"><span>${fieldLabels[k]}</span><b>${escapeHtml(t[k]||'Не заполнено')}</b></div>`).join('')}</div><details class="score-details"><summary>Почему ${t.score} баллов? · Readiness DNA</summary>${breakdownFor(t).map(r=>`<p><b>${r.label} — ${r.points}/${r.weight}</b><br>${escapeHtml(r.reason)}</p>`).join('')}<small>Проверка конкретности, не гарантия достоверности или реализуемости.</small></details>${mine?'<button class="btn" id="edit-task">Редактировать карточку</button>':''}${state.role==='team'?(existing?`<div class="mode-banner">Ваш отклик уже отправлен: ${statusLabel(existing.status)}</div>`:`<form id="offer-form"><h3>Предложить решение</h3><label>Идея<textarea class="textarea" id="offer-idea" required minlength="10" maxlength="3000"></textarea></label><label>План<textarea class="textarea" id="offer-plan" required minlength="10" maxlength="3000"></textarea></label><label>Срок<input class="input" id="offer-deadline" required minlength="2" maxlength="100" placeholder="Например, 10 дней"></label><label>Ссылка на прототип — необязательно<input class="input" id="offer-link" type="url" maxlength="500" placeholder="https://..."></label><button class="btn primary" data-submit-offer="${id}">Отправить предложение</button></form>`):''}</section></div>`;
+ document.getElementById('modal-root').innerHTML=`<div class="modal-backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="task-modal-title"><div class="modal-head"><div><span class="badge green">${t.score}/100 · ${escapeHtml(t.level)}</span><h2 id="task-modal-title">${escapeHtml(t.title)}</h2><p>${escapeHtml(t.industry)}</p></div><button class="close" data-close aria-label="Закрыть">×</button></div><div class="detail-grid">${Object.keys(fieldLabels).map(k=>`<div class="detail-item"><span>${fieldLabels[k]}</span><b>${escapeHtml(t[k]||'Не заполнено')}</b></div>`).join('')}</div><details class="score-details"><summary>Почему ${t.score} баллов? · Readiness DNA</summary>${breakdownFor(t).map(r=>`<p><b>${r.label} — ${r.points}/${r.weight}</b><br>${escapeHtml(r.reason)}</p>`).join('')}<small>Проверка конкретности, не гарантия достоверности или реализуемости.</small></details>${mine?'<button class="btn" id="edit-task">Редактировать карточку</button>':''}${state.role==='team'?(existing?`<div class="mode-banner">Ваш отклик уже отправлен: ${statusLabel(existing.status)}</div>`:`<form id="offer-form"><h3>Предложить решение</h3><label>Идея<textarea class="textarea" id="offer-idea" required minlength="10" maxlength="3000"></textarea></label><label>План<textarea class="textarea" id="offer-plan" required minlength="10" maxlength="3000"></textarea></label><label>Срок<input class="input" id="offer-deadline" required minlength="2" maxlength="100" placeholder="Например, 10 дней"></label><label>Ссылка на прототип<input class="input" id="offer-link" type="url" required maxlength="500" placeholder="https://example.com/prototype"></label><small class="score-reason">Добавьте ссылку на прототип в Figma, GitHub или веб-демо.</small><button class="btn primary" data-submit-offer="${id}">Отправить предложение</button></form>`):''}</section></div>`;
  bindModal();document.getElementById('offer-form')?.addEventListener('submit',e=>{e.preventDefault();submitOffer(id)});
  document.getElementById('edit-task')?.addEventListener('click',()=>{state.draft={...structuredClone(initialState.draft),...t,raw:t.context,questions:[],confirmed:false,clientId:crypto.randomUUID()};state.editingId=t.id;state.draftStep=3;state.view='create';closeModal();render();});
 }
@@ -561,7 +572,7 @@ function bindModal(){document.querySelector('[data-close]')?.addEventListener('c
 async function submitOffer(taskId){await busy('[data-submit-offer]',async()=>{
  if(state.role!=='team')throw Error('Предложение отправляет аккаунт команды.');
  const payload={taskId,idea:document.getElementById('offer-idea').value.trim(),plan:document.getElementById('offer-plan').value.trim(),deadline:document.getElementById('offer-deadline').value.trim(),prototype:document.getElementById('offer-link').value.trim()};
- if(payload.prototype&&!safeLink(payload.prototype))throw Error('Укажите ссылку с http:// или https://');
+ if(!safeLink(payload.prototype))throw Error('Добавьте корректную ссылку на прототип с http:// или https://.');
  if(DEMO){if(state.offers.some(o=>o.taskId===taskId&&o.teamId==='team1'))throw Error('Вы уже отправили отклик.');state.offers.push({...payload,id:'o'+crypto.randomUUID(),teamId:'team1',status:'pending',created:'Сегодня',progressConfirmed:false});saveState();}else{await api('/offers','POST',payload);await syncState();}
  closeModal();state.view='offers';render();toast('Предложение отправлено.');});}
 function statusLabel(s){return ({pending:'На рассмотрении',accepted:'Команда выбрана',rejected:'Отклонено'})[s]||s;}

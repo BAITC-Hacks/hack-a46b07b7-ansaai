@@ -134,12 +134,16 @@ class Offer(StrictModel):
     taskId:str=Field(max_length=80)
     idea:str=Field(min_length=10,max_length=3000)
     plan:str=Field(min_length=10,max_length=3000)
-    prototype:str=Field(default='',max_length=500)
+    prototype:str=Field(min_length=1,max_length=500)
     deadline:str=Field(min_length=2,max_length=100)
     @field_validator('prototype')
     @classmethod
     def url_check(cls,v):
-        if v and (urlsplit(v).scheme not in ('http','https') or not urlsplit(v).netloc):raise ValueError('Нужна ссылка http/https')
+        try:
+            parsed=urlsplit(v)
+            if parsed.scheme not in ('http','https') or not parsed.netloc or not parsed.hostname:raise ValueError
+            parsed.port
+        except ValueError:raise ValueError('Нужна корректная ссылка http/https')
         return v
 class Decision(StrictModel):decision:Literal['accepted','rejected']
 class Progress(StrictModel):evidence:str=Field(min_length=10,max_length=2000)

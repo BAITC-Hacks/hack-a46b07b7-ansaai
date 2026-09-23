@@ -58,7 +58,7 @@ def test_roles_ownership_privacy_idempotence_conflicts():
     o=offer(team,t)
     assert team2.get('/api/state').json()['offers']==[]
     assert other.get('/api/state').json()['offers']==[]
-    assert team.post('/api/offers',json={'taskId':t['id'],'idea':'Ещё одна идея решения','plan':'Тестовый план разработки','deadline':'7 дней'}).status_code==409
+    assert team.post('/api/offers',json={'taskId':t['id'],'idea':'Ещё одна идея решения','plan':'Тестовый план разработки','deadline':'7 дней','prototype':'https://example.com/another-prototype'}).status_code==409
     path='/api/offers/'+o['id']
     assert other.post(path+'/decision',json={'decision':'accepted'}).status_code==403
     assert team.post(path+'/progress',json={'evidence':'Проверили импорт на 20 строках'}).status_code==403
@@ -83,6 +83,10 @@ def test_safe_static_and_bad_input():
     for path in ['/.env','/data/taskready-v3.sqlite3','/backend/main.py','/README.md','/public/../backend/main.py']:
         assert c.get(path).status_code==404
     team,_=account('team@example.com','team');t=create(c)
+    required={'taskId':t['id'],'idea':'Идея достаточно длинная','plan':'План достаточно длинный','deadline':'10 дней'}
+    assert team.post('/api/offers',json=required).status_code==422
+    assert team.post('/api/offers',json={**required,'prototype':''}).status_code==422
+    assert team.post('/api/offers',json={**required,'prototype':'https://example.com/prototype'}).status_code==201
     assert team.post('/api/offers',json={'taskId':t['id'],'idea':'Идея достаточно длинная','plan':'План достаточно длинный','deadline':'10 дней','prototype':'javascript:alert(1)'}).status_code==422
     assert c.post('/api/tasks',json={**card(),'owner':'attacker'}).status_code==422
 
